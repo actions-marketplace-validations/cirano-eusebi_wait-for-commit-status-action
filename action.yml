@@ -1,5 +1,5 @@
-name: Wait for the commit status
-description: Checks GitHub API for a given commit with the status containing the provided context.
+name: Wait for commit status
+description: Checks GitHub API for a given commit with the status containing the provided name.
 
 branding:
   icon: clock
