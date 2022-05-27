@@ -39,6 +39,7 @@ type Status struct {
 func getStatus(ctx context.Context, sha, repository, token string) (*Response, error) {
 	url := fmt.Sprintf("https://api.github.com/repos/%s/commits/%s/status", repository, sha)
 
+	fmt.Printf("Hitting url %s\n", url)
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -55,7 +56,7 @@ func getStatus(ctx context.Context, sha, repository, token string) (*Response, e
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("failed to get commit status")
+		return nil, fmt.Errorf(fmt.Sprintf("failed to get commit status. Status code: %d", resp.StatusCode))
 	}
 
 	bodyBytes, err := io.ReadAll(resp.Body)
